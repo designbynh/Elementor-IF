@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Elementor IF Widget
  * Description: Conditional IF widget for Elementor.
- * Version:     1.0.3
+ * Version:     1.0.4
  * Author:      Your Name
  */
 // This is a test, another test.
