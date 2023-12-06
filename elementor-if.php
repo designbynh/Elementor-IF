@@ -19,41 +19,17 @@ function register_elementor_if_widget( $widgets_manager ) {
 }
 add_action( 'elementor/widgets/register', 'register_elementor_if_widget' );
 
-function elementor_if_widget_check_update($transient) {
-	if (empty($transient->checked)) {
-		return $transient;
-	}
+require 'includes/plugin-update-checker/plugin-update-checker.php';
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
-	$repository = 'designbynh/elementor-if'; // Replace with your GitHub repository
-	$slug = 'elementor-if/elementor-if.php'; // Replace with your plugin slug and main file
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+	'https://github.com/designbynh/elementor-if/',
+	__FILE__,
+	'elementor-if'
+);
 
-	// GitHub API URL for the latest release
-	$api_url = 'https://api.github.com/repos/' . $repository . '/releases/latest';
-	$response = wp_remote_get($api_url, array(
-		'headers' => array(
-			'Accept' => 'application/vnd.github.v3+json'
-		)
-	));
+//Set the branch that contains the stable release.
+$myUpdateChecker->setBranch('main');
 
-	if (is_wp_error($response)) {
-		return $transient;
-	}
-
-	$release = json_decode(wp_remote_retrieve_body($response));
-
-	if (isset($release->tag_name) && version_compare($release->tag_name, $transient->checked[$slug], '>')) {
-		// The URL to download the zip file of the release
-		$package = $release->zipball_url;
-
-		$transient->response[$slug] = array(
-			'slug'        => $slug,
-			'plugin'      => $slug,
-			'new_version' => $release->tag_name,
-			'package'     => $package,
-		);
-	}
-
-	return $transient;
-}
-
-add_filter('site_transient_update_plugins', 'elementor_if_widget_check_update');
+//Optional: If you're using a private repository, specify the access token like this:
+$myUpdateChecker->setAuthentication('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');
