@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Elementor IF Widget
  * Description: Conditional IF widget for Elementor.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      Your Name
  */
-
+// This is a test
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
