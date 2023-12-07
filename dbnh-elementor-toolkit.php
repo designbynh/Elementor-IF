@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Register the Elementor IF Widget
 function register_elementor_if_widget( $widgets_manager ) {
 
-	require_once( __DIR__ . '/includes/widgets/if-widget.php' );
+	require_once( __DIR__ . '/includes/widgets/DBNH_Elementor_IF_Widget.php' );
 
-	$widgets_manager->register( new \Elementor_IF_Widget() );
+	$widgets_manager->register( new \DBNH_Elementor_IF_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_elementor_if_widget' );
@@ -23,9 +23,9 @@ add_action( 'elementor/widgets/register', 'register_elementor_if_widget' );
 // Register the Elementor Calculator Widget
 function register_elementor_calculator_widget( $widgets_manager ) {
 
-	require_once( __DIR__ . '/includes/widgets/calculator-widget.php' );
+	require_once( __DIR__ . '/includes/widgets/DBNH_Elementor_Calculator_Widget.php' );
 
-	$widgets_manager->register( new \Elementor_Calculator_Widget() );
+	$widgets_manager->register( new \DBNH_Elementor_Calculator_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_elementor_calculator_widget' );

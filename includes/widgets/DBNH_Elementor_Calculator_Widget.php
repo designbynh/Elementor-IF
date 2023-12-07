@@ -1,14 +1,16 @@
 <?php
-namespace Elementor;
+
+use Elementor\Controls_Manager;
+use Elementor\Group_Control_Typography;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
-
+class DBNH_Elementor_Calculator_Widget extends \Elementor\Widget_Base {
+	
 	public function get_name() {
-		return 'calculator_widget'; // Updated widget name
+		return 'elementor-calculator'; // Updated widget name
 	}
 	
 	public function get_title() {
@@ -20,7 +22,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'basic' ]; // Place your widget in the appropriate category
+		return [ 'general' ]; // Place your widget in the appropriate category
 	}
 
 	protected function register_controls() {
@@ -28,7 +30,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => esc_html__( 'Content', 'elementor-savings-percentage' ),
+				'label' => esc_html__( 'Settings', 'elementor-calculator-widget' ),
 			]
 		);
 		
@@ -36,7 +38,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'regular_price',
 			[
-				'label' => esc_html__( 'Regular Price', 'elementor-savings-percentage' ),
+				'label' => esc_html__( 'Regular Price', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::TEXT,
 				'dynamic' => [
 					'active' => true,
@@ -48,7 +50,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'sale_price',
 			[
-				'label' => esc_html__( 'Sale Price', 'elementor-savings-percentage' ),
+				'label' => esc_html__( 'Sale Price', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::TEXT,
 				'dynamic' => [
 					'active' => true,
@@ -60,7 +62,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'prefix_text',
 			[
-				'label' => esc_html__( 'Prefix', 'elementor-savings-percentage' ),
+				'label' => esc_html__( 'Prefix', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '',
 			]
@@ -70,7 +72,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'postfix_text',
 			[
-				'label' => esc_html__( 'Postfix', 'elementor-savings-percentage' ),
+				'label' => esc_html__( 'Postfix', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '%',
 			]
@@ -80,7 +82,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'html_tag',
 			[
-				'label' => esc_html__( 'HTML Tag', 'elementor-savings-percentage' ),
+				'label' => esc_html__( 'HTML Tag', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'p' => 'p',
@@ -102,7 +104,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'style_section',
 			[
-				'label' => esc_html__( 'Style', 'elementor-savings-percentage' ),
+				'label' => esc_html__( 'Style', 'elementor-calculator-widget' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -111,10 +113,10 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'text_color',
 			[
-				'label' => esc_html__( 'Color', 'elementor-savings-percentage' ),
+				'label' => esc_html__( 'Color', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .savings-percentage' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .calculator-widget' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -124,7 +126,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'typography',
-				'selector' => '{{WRAPPER}} .savings-percentage',
+				'selector' => '{{WRAPPER}} .calculator-widget',
 			]
 		);
 
@@ -149,12 +151,7 @@ class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 			$output = 'No savings';
 		}
 	
-		echo "<{$html_tag} class='savings-percentage'>{$output}</{$html_tag}>";
+		echo "<{$html_tag} class='calculator-widget'>{$output}</{$html_tag}>";
 	}
 	
 }
-
-// Register the widget
-add_action('elementor/widgets/widgets_registered', function($widgets_manager) {
-	$widgets_manager->register_widget_type(new \Elementor\Elementor_Calculator_Widget());
-});

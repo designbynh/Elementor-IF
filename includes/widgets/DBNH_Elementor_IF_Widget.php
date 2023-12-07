@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-class Elementor_IF_Widget extends \Elementor\Widget_Base {
+class DBNH_Elementor_IF_Widget extends \Elementor\Widget_Base {
 
 	public function get_name() {
 		return 'elementor_if';
