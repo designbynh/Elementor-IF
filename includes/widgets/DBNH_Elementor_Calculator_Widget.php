@@ -36,9 +36,9 @@ class DBNH_Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		
 		// Regular Price
 		$this->add_control(
-			'regular_price',
+			'value1',
 			[
-				'label' => esc_html__( 'Regular Price', 'elementor-calculator-widget' ),
+				'label' => esc_html__( 'Value 1', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::TEXT,
 				'dynamic' => [
 					'active' => true,
@@ -46,15 +46,39 @@ class DBNH_Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 			]
 		);
 		
+		// Operation Type
+		$this->add_control(
+			'operation_type',
+			[
+				'label' => esc_html__( 'Operation Type', 'elementor-calculator-widget' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'addition' => esc_html__( 'Addition', 'elementor-calculator-widget' ),
+					'subtraction' => esc_html__( 'Subtraction', 'elementor-calculator-widget' ),
+					'multiplication' => esc_html__( 'Multiplication', 'elementor-calculator-widget' ),
+					'percentage' => esc_html__( 'Percentage', 'elementor-calculator-widget' ),
+				],
+				'default' => 'percentage',
+			]
+		);
+		
 		// Sale Price
 		$this->add_control(
-			'sale_price',
+			'value2',
 			[
-				'label' => esc_html__( 'Sale Price', 'elementor-calculator-widget' ),
+				'label' => esc_html__( 'Value 2', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::TEXT,
 				'dynamic' => [
 					'active' => true,
 				],
+			]
+		);
+		
+		// Add a divider
+		$this->add_control(
+			'section_divider',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
 			]
 		);
 		
@@ -75,6 +99,14 @@ class DBNH_Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Postfix', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '%',
+			]
+		);
+		
+		// Add a divider
+		$this->add_control(
+			'section_divider',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
 			]
 		);
 		
@@ -136,22 +168,48 @@ class DBNH_Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 	
-		$regular_price = floatval($settings['regular_price']);
-		$sale_price = floatval($settings['sale_price']);
+		$value1 = floatval($settings['value1']);
+		$value2 = floatval($settings['value2']);
+		$operation_type = $settings['operation_type'];
 	
 		$prefix = $settings['prefix_text'];
 		$postfix = $settings['postfix_text'];
-	
 		$html_tag = tag_escape($settings['html_tag']);
+		$output = '';
 	
-		if ($regular_price > 0 && $sale_price < $regular_price) {
-			$savings = round((($regular_price - $sale_price) / $regular_price) * 100);
-			$output = $prefix . $savings . $postfix;
-		} else {
-			$output = 'No savings';
+		switch ($operation_type) {
+			case 'percentage':
+				if ($value1 > 0 && $value2 < $value1) {
+					$percentage = round((($value1 - $value2) / $value1) * 100);
+					$output = $prefix . $percentage . $postfix;
+				} else {
+					$output = 'No savings';
+				}
+				break;
+	
+			case 'addition':
+				$result = $value1 + $value2;
+				$output = $prefix . $result . $postfix;
+				break;
+	
+			case 'subtraction':
+				$result = $value1 - $value2;
+				$output = $prefix . $result . $postfix;
+				break;
+	
+			case 'multiplication':
+				$result = $value1 * $value2;
+				$output = $prefix . $result . $postfix;
+				break;
+				
+			default:
+				$output = "No parameters set.";
+				break;
 		}
 	
 		echo "<{$html_tag} class='calculator-widget'>{$output}</{$html_tag}>";
 	}
+
 	
 }
+
