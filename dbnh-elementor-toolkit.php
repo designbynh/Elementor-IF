@@ -2,7 +2,7 @@
 /**
  * Plugin Name: DBNH Elementor Kit
  * Description: A Tool Kit for Elementor.
- * Version:     1.0.3
+ * Version:     1.0.4
  * Author:      Design by NH
  */
 // This is a test, another test.
@@ -19,6 +19,16 @@ function register_elementor_if_widget( $widgets_manager ) {
 
 }
 add_action( 'elementor/widgets/register', 'register_elementor_if_widget' );
+
+// Register the Elementor Calculator Widget
+function register_elementor_calculator_widget( $widgets_manager ) {
+
+	require_once( __DIR__ . '/includes/widgets/calculator-widget.php' );
+
+	$widgets_manager->register( new \Elementor_Calculator_Widget() );
+
+}
+add_action( 'elementor/widgets/register', 'register_elementor_calculator_widget' );
 
 // Auto Update Feature
 require 'includes/plugin-update-checker/plugin-update-checker.php';

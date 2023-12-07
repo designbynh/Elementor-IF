@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-class Calculator_Widget extends \Elementor\Widget_Base {
+class Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 
 	public function get_name() {
 		return 'calculator_widget'; // Updated widget name
@@ -156,5 +156,5 @@ class Calculator_Widget extends \Elementor\Widget_Base {
 
 // Register the widget
 add_action('elementor/widgets/widgets_registered', function($widgets_manager) {
-	$widgets_manager->register_widget_type(new \Elementor\Calculator_Widget());
+	$widgets_manager->register_widget_type(new \Elementor\Elementor_Calculator_Widget());
 });
