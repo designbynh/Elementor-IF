@@ -1,15 +1,16 @@
 <?php
 /**
- * Plugin Name: Elementor IF Widget
- * Description: Conditional IF widget for Elementor.
+ * Plugin Name: DBNH Elementor Kit
+ * Description: A Tool Kit for Elementor.
  * Version:     1.0.4
- * Author:      Your Name
+ * Author:      Design by NH
  */
 // This is a test, another test.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+// Register the Elementor IF Widget
 function register_elementor_if_widget( $widgets_manager ) {
 
 	require_once( __DIR__ . '/widgets/if-widget.php' );
@@ -19,6 +20,7 @@ function register_elementor_if_widget( $widgets_manager ) {
 }
 add_action( 'elementor/widgets/register', 'register_elementor_if_widget' );
 
+// Auto Update Feature
 require 'includes/plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
