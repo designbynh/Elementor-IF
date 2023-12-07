@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Register the Elementor IF Widget
 function register_elementor_if_widget( $widgets_manager ) {
 
-	require_once( __DIR__ . '/widgets/if-widget.php' );
+	require_once( __DIR__ . '/includes/widgets/if-widget.php' );
 
 	$widgets_manager->register( new \Elementor_IF_Widget() );
 
@@ -25,10 +25,10 @@ require 'includes/plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 $myUpdateChecker = PucFactory::buildUpdateChecker(
-	'https://github.com/designbynh/elementor-if/',
+	'https://github.com/designbynh/dbnh-elementor-toolkit/',
 	__FILE__,
-	'elementor-if'
+	'dbnh-elementor-toolkit'
 );
 
 //Set the branch that contains the stable release.
-$myUpdateChecker->setBranch('main');
+$myUpdateChecker->setBranch('master');
