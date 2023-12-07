@@ -53,9 +53,9 @@ class DBNH_Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Operation Type', 'elementor-calculator-widget' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'addition' => esc_html__( 'Addition', 'elementor-calculator-widget' ),
-					'subtraction' => esc_html__( 'Subtraction', 'elementor-calculator-widget' ),
-					'multiplication' => esc_html__( 'Multiplication', 'elementor-calculator-widget' ),
+					'add' => esc_html__( 'Add', 'elementor-calculator-widget' ),
+					'subtract' => esc_html__( 'Subtract', 'elementor-calculator-widget' ),
+					'multiply' => esc_html__( 'Multiply', 'elementor-calculator-widget' ),
 					'percentage' => esc_html__( 'Percentage', 'elementor-calculator-widget' ),
 				],
 				'default' => 'percentage',
@@ -104,7 +104,7 @@ class DBNH_Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 		
 		// Add a divider
 		$this->add_control(
-			'section_divider',
+			'section_divider_2',
 			[
 				'type' => \Elementor\Controls_Manager::DIVIDER,
 			]
@@ -187,17 +187,17 @@ class DBNH_Elementor_Calculator_Widget extends \Elementor\Widget_Base {
 				}
 				break;
 	
-			case 'addition':
+			case 'add':
 				$result = $value1 + $value2;
 				$output = $prefix . $result . $postfix;
 				break;
 	
-			case 'subtraction':
+			case 'subtract':
 				$result = $value1 - $value2;
 				$output = $prefix . $result . $postfix;
 				break;
 	
-			case 'multiplication':
+			case 'multiply':
 				$result = $value1 * $value2;
 				$output = $prefix . $result . $postfix;
 				break;

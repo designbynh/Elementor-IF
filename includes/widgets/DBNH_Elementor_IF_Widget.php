@@ -116,7 +116,7 @@ class DBNH_Elementor_IF_Widget extends \Elementor\Widget_Base {
 		
 		// Add a divider
 		$this->add_control(
-			'section_divider',
+			'section_divider_2',
 			[
 				'type' => \Elementor\Controls_Manager::DIVIDER,
 			]
