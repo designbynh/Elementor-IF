@@ -2,7 +2,7 @@
 /**
  * Plugin Name: DBNH Elementor Kit
  * Description: A Tool Kit for Elementor.
- * Version:     1.0.5
+ * Version:     1.0.6
  * Author:      Design by NH
  */
 // This is a test, another test.
