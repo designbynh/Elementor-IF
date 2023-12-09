@@ -10,25 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// Register the Elementor IF Widget
-function register_elementor_if_widget( $widgets_manager ) {
+// Define Paths
+define( 'DBNH_TOOLKIT_PATH', __DIR__ );
+define('DBNH_TOOLKIT_WIDGET_PATH', __DIR__ . '/includes/widgets/');
+define('DBNH_TOOLKIT_INCLUDES', __DIR__ . '/includes/');
 
-	require_once( __DIR__ . '/includes/widgets/DBNH_Elementor_IF_Widget.php' );
-
-	$widgets_manager->register( new \DBNH_Elementor_IF_Widget() );
-
-}
-add_action( 'elementor/widgets/register', 'register_elementor_if_widget' );
-
-// Register the Elementor Calculator Widget
-function register_elementor_calculator_widget( $widgets_manager ) {
-
-	require_once( __DIR__ . '/includes/widgets/DBNH_Elementor_Calculator_Widget.php' );
-
-	$widgets_manager->register( new \DBNH_Elementor_Calculator_Widget() );
-
-}
-add_action( 'elementor/widgets/register', 'register_elementor_calculator_widget' );
+// Load widgets
+require_once( DBNH_TOOLKIT_INCLUDES . 'dbnh_widget_loader.php');
 
 // Auto Update Feature
 require 'includes/plugin-update-checker/plugin-update-checker.php';
